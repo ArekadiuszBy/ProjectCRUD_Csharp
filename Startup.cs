@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProjektCRUD.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +19,18 @@ namespace ProjektCRUD
         {
             Configuration = configuration;
         }
-
+         
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //serwis do DB (z Data/AppDbContext)
+            services.AddDbContext<AppDbContext>(options =>
+                //pod³¹czenie BD - u¿ycie ConnectionStringa z appsettings.JSON
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
             services.AddControllersWithViews();
         }
 

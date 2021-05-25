@@ -1,0 +1,64 @@
+﻿@model ProjektCRUD.Models.Book
+
+@* Create z BookController.cs  *@
+<form method="post" asp-action="Create">
+    <div class="border p-1">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-black-70 pl-3">Dodaj książkę</h2>
+        </div>
+        <div class="offset-1 row">
+            <div class="col-14">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="BookName">Nazwa książki</label>
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="Author">Autor</label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="BookType">Rodzaj dzieła</label>
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="GetBookDate">Data wypożyczenia</label>
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="GiveBookDate">Termin oddania</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <input asp-for="BookName" class="form-control" />
+                        <span asp-validation-for="BookName" class="text-danger"></span>
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="Author" class="form-control" />
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="BookType" class="form-control" />
+                    </div>
+                    <div class="col-2">
+                        <input asp-for="GetBookDate" class="form-control" />
+                        <span asp-validation-for="GetBookDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-2">
+                        <input asp-for="GiveBookDate" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Dodaj" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Anuluj</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+@* Walidacja po stronie serwera *@

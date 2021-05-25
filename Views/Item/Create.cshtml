@@ -1,0 +1,59 @@
+﻿@model ProjektCRUD.Models.Item
+
+<form method="post" asp-action="Create">
+    <div class="border p-1">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-black-70 pl-3">Dodaj przedmiot</h2>
+        </div>
+        <div class="offset-1 row">
+            <div class="col-10">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="Borrower">Kto pożyczył?</label>
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="Lender">Kto użyczył?</label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="ItemName">Co zostało pożyczone?</label>
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="Quantity">Ilość</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <input asp-for="Borrower" class="form-control" />
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="Lender" class="form-control" />
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="ItemName" class="form-control" />
+                    </div>
+                    <div class="col-2">
+                        <input asp-for="Quantity" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Dodaj" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Anuluj</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+@* Walidacja po stronie klienta *@
+@section Scripts{ 
+    @{ <partial name="_ValidationScriptsPartial" /> }
+}
+

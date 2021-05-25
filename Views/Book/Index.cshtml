@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ProjektCRUD.Models.Book>
+
+<div class="container p-3">
+     <div class="row pt-4">
+          <div class="col-6">
+               <h2 class="text-primary">Wypożyczone książki</h2>
+          </div>
+         <div class="col-6 text-right">
+             <a asp-controller="Book" asp-action="Create" class="btn btn-secondary">Dodaj książkę</a>
+         </div>
+     </div>
+    <br/>
+
+    @if (Model.Count() > 0)  //sprawdzanie czy są dane w BD
+    {
+                <table class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Numer
+                            </th>
+                            <th>
+                                Nazwa książki
+                            </th>
+                            <th>
+                                Autor książki
+                            </th>
+                            <th>
+                                Rodzaj książki
+                            </th>
+                            <th>
+                                Data wypożyczenia
+                            </th>
+                            <th>
+                                Termin oddania
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var book in Model)     //Model z BookController.cs, typu Book.cs
+                        {
+                        <tr>
+                            <td width="10%">@book.Id</td>
+                            <td width="20%">@book.BookName</td>
+                            <td width="20%">@book.Author</td>
+                            <td width="20%">@book.BookType</td>
+                            <td width="15%">@book.GetBookDate</td>
+                            <td width="15%">@book.GiveBookDate</td>
+                            <td width="50%">
+                                <div class="w-100 btn-group"role="group">
+                                    @* asp-route-Id -> By przycisk wiedział co aktualizuje/usuwa (Id)*@
+                                    <a asp-controller="Book" asp-action="Update" asp-route-Id="@book.Id" class="btn btn-primary mx-2">Zaktualizuj</a>
+                                    <a asp-controller="Book" asp-action="Delete" asp-route-Id="@book.Id" class="btn btn-danger mx-2">Usuń</a>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+    }
+    else
+    {
+        <p>Aktualnie brak wypożyczonych książek</p>
+    }
+
+</div>
